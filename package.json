@@ -1,0 +1,32 @@
+{
+  "name": "monsters-backend",
+  "version": "1.0.0",
+  "description": "Backend for monsters app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
+    "debug": "nodemon --inspect src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coder2012/monsters-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coder2012/monsters-backend/issues"
+  },
+  "homepage": "https://github.com/Coder2012/monsters-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "prisma": "^3.13.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^3.13.0",
+    "nodemon": "^2.0.16"
+  }
+}
