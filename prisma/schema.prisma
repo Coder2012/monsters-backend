@@ -12,8 +12,10 @@ datasource db {
 
 model kids {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  points    Int
+  firstName String
+  lastName  String
+  monster   String
+  points    Int      @default(0)
   taskList  String[]
   createdAt DateTime @default(now())
 }

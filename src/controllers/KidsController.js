@@ -5,7 +5,9 @@ async function AddKid(req, res) {
   try {
     const kidsdata = await prisma.kids.create({
       data: {
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        monster: req.body.monster,
         points: req.body.points,
       },
     });
@@ -14,6 +16,7 @@ async function AddKid(req, res) {
 
     return res.status(201).json({ msg: "Kid successfully added!" });
   } catch (error) {
+    console.log(error);
     return res.status(400).json({ msg: "Error adding kid" });
   }
 }
@@ -23,7 +26,9 @@ async function FetchAllKids(req, res) {
     const kidsdata = await prisma.kids.findMany({
       select: {
         id: true,
-        name: true,
+        firstName: true,
+        lastName: true,
+        monster: true,
         points: true,
         taskList: true,
         createdAt: true,
@@ -44,7 +49,9 @@ async function FetchOneKid(req, res) {
       },
       select: {
         id: true,
-        name: true,
+        firstName: true,
+        lastName: true,
+        monster: true,
         points: true,
         taskList: true,
         createdAt: true,
@@ -64,7 +71,9 @@ async function UpdateOneKid(req, res) {
         id: req.params.id,
       },
       data: {
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        monster: req.body.monster,
         points: req.body.points,
         taskList: req.body.taskList,
       },
