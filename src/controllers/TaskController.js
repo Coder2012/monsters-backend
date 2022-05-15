@@ -19,20 +19,21 @@ async function AddTask(req, res) {
 }
 
 async function FetchAllTasks(req, res) {
-  try {
-    const tasksdata = await prisma.tasks.findMany({
-      select: {
-        id: true,
-        title: true,
-        points: true,
-        createdAt: true,
-      },
-    });
+  // try {
+  const tasksdata = await prisma.tasks.findMany({
+    select: {
+      id: true,
+      title: true,
+      points: true,
+      createdAt: true,
+    },
+  });
 
-    return res.status(201).json(tasksdata);
-  } catch (error) {
-    return res.status(400).json({ msg: "Error Fetching Tasks" });
-  }
+  return res.status(201).json(tasksdata);
+
+  // } catch (error) {
+  //   return res.status(400).json({ msg: "Error Fetching Tasks" });
+  // }
 }
 
 async function FetchOneTask(req, res) {
