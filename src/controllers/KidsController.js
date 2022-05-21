@@ -65,25 +65,28 @@ async function FetchOneKid(req, res) {
 }
 
 async function UpdateOneKid(req, res) {
-  // try {
-  console.log(JSON.parse(req.body.taskList));
-  await prisma.kids.update({
-    where: {
-      id: req.params.id,
-    },
-    data: {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      monster: req.body.monster,
-      points: req.body.points,
-      taskList: JSON.parse(req.body.taskList),
-    },
-  });
+  try {
+    let taskList;
+    if (req.body.taskList) {
+      taskList = JSON.parse(req.body.taskList);
+    }
+    await prisma.kids.update({
+      where: {
+        id: req.params.id,
+      },
+      data: {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        monster: req.body.monster,
+        points: req.body.points,
+        taskList,
+      },
+    });
 
-  return res.status(201).json({ msg: "Kid successfully updated!!" });
-  // } catch (error) {
-  //   return res.status(400).json({ error, msg: "Error updating kid" });
-  // }
+    return res.status(201).json({ msg: "Kid successfully updated!!" });
+  } catch (error) {
+    return res.status(400).json({ error, msg: "Error updating kid" });
+  }
 }
 
 async function DeleteOneKid(req, res) {
