@@ -12,7 +12,7 @@ const allowedOrigins = [
   "https://deluxe-axolotl-2e46f9.netlify.app",
 ];
 api.use(express.json());
-app.use(
+api.use(
   cors({
     origin: function (origin, callback) {
       if (!origin) return callback(null, true);
