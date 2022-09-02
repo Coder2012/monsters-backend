@@ -11,11 +11,10 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://deluxe-axolotl-2e46f9.netlify.app",
 ];
+api.use(express.json());
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         return callback(new Error("CORS blocking mode active"), false);
@@ -24,9 +23,6 @@ app.use(
     },
   })
 );
-
-api.use(express.json());
-api.use(cors(options));
 api.use(route);
 
 api.listen(PORT, () => {
