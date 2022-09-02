@@ -7,12 +7,23 @@ const PORT = process.env.PORT || 3001;
 const api = express();
 dotenv.config();
 
-const options = {
-  origin: [
-    "http://localhost:3000",
-    "https://deluxe-axolotl-2e46f9.netlify.app",
-  ],
-};
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://deluxe-axolotl-2e46f9.netlify.app",
+];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback(new Error("CORS blocking mode active"), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 api.use(express.json());
 api.use(cors(options));
