@@ -7,8 +7,15 @@ const PORT = process.env.PORT || 3001;
 const api = express();
 dotenv.config();
 
+const options = {
+  origin: [
+    "http://localhost:3000",
+    "https://deluxe-axolotl-2e46f9.netlify.app",
+  ],
+};
+
 api.use(express.json());
-api.use(cors());
+api.use(cors(options));
 api.use(route);
 
 api.listen(PORT, () => {
